@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.shihang.fuck.rpc.spring.boot.autoconfigure.FuckAutoConfiguration

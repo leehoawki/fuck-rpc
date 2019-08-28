@@ -1,0 +1,15 @@
+*.iml
+**/*.iml
+target/
+**/target/
+.classpath
+**/.classpath
+.project
+**/.project
+.idea/
+**/generated
+*.iws
+*.ipr
+.DS_Store
+
+**/*.versionsBackup
