@@ -4,17 +4,18 @@ package com.shihang.fuck.rpc.binding;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.shihang.fuck.rpc.annotation.Command;
+import com.shihang.fuck.rpc.annotation.HttpMethod;
 import com.shihang.fuck.rpc.annotation.Mapper;
-import com.shihang.fuck.rpc.serialize.IProtocol;
-import com.shihang.fuck.rpc.serialize.ProtocolFactory;
-import com.shihang.fuck.rpc.serialize.handler.Handler;
-import com.shihang.fuck.rpc.serialize.handler.HandlerFactory;
-import com.shihang.fuck.rpc.serialize.json.JsonProtocol;
+import com.shihang.fuck.rpc.handle.Handler;
+import com.shihang.fuck.rpc.handle.HandlerFactory;
 import com.shihang.fuck.rpc.utils.CollectionUtils;
 import com.shihang.fuck.rpc.utils.ReflectUtils;
 import com.shihang.fuck.rpc.utils.StringUtils;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -29,8 +30,6 @@ public class MethodDescriptor {
 
     private JavaType type;
 
-    private IProtocol protocol;
-
     private String schema = "http";
 
     private String host = "localhost";
@@ -41,8 +40,6 @@ public class MethodDescriptor {
 
     private List<Parameter> parameters;
 
-    private static final Class<? extends IProtocol> protocolClazz = JsonProtocol.class;
-
     private MapperMethod mapperMethod;
 
     private int argumentsize;
@@ -51,10 +48,12 @@ public class MethodDescriptor {
 
     static TypeFactory typeFactory = TypeFactory.defaultInstance();
 
+    private HttpMethod httpMethod;
+
     public MethodDescriptor(Class<?> mapperInterface, Method method) {
         this.mapperInterface = mapperInterface;
         this.method = method;
-        resolveProtocol();
+        resolveMethod();
         resolveService();
         resolveDefinitions();
         resolveRealPath();
@@ -148,8 +147,9 @@ public class MethodDescriptor {
         return null;
     }
 
-    private void resolveProtocol() {
-        this.protocol = ProtocolFactory.getProtocol(protocolClazz);
+    private void resolveMethod() {
+        Command command = this.method.getAnnotation(Command.class);
+        this.httpMethod = command.method();
     }
 
     private String resolvePath() {
@@ -174,10 +174,6 @@ public class MethodDescriptor {
         return path;
     }
 
-    public IProtocol getProtocol() {
-        return protocol;
-    }
-
     public JavaType getReturnType() {
         return returnType;
     }
@@ -190,7 +186,7 @@ public class MethodDescriptor {
         mapperMethod.setHost(this.host);
         mapperMethod.setPort(this.port);
         mapperMethod.setPath(this.path);
-        mapperMethod.setIProtocol(this.protocol);
+        mapperMethod.setMethod(this.httpMethod);
         mapperMethod.setReturnType(this.returnType);
         mapperMethod.setArgumentsize(argumentsize);
         return mapperMethod;

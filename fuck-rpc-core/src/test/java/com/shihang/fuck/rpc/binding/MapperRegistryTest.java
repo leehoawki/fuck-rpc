@@ -28,7 +28,7 @@ public class MapperRegistryTest {
     public void test3() {
         MapperRegistry mapperRegistry = new MapperRegistry();
         RBInterface1 rbInterface1 = mapperRegistry.getMapper(RBInterface1.class);
-        System.out.println(rbInterface1.get("18urwps1"));
+        System.out.println(rbInterface1.get("1ffqfn01"));
     }
 
     @Test

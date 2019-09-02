@@ -1,4 +1,4 @@
-package com.shihang.fuck.rpc.serialize.handler;
+package com.shihang.fuck.rpc.handle;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
