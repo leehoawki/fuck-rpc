@@ -8,14 +8,7 @@ import com.shihang.fuck.rpc.handle.RpcResponse;
 import java.util.List;
 
 @Mapper(service = "orderdata.dev.svc.cluster.local:8080", path = "/${1}/api/orders/order/select")
-interface OrderInterface1 {
-
-    @Command(method = HttpMethod.POST)
-    RpcResponse<List<Order>> select(String city, Order order);
-}
-
-@Mapper(service = "orderdata.dev.svc.cluster.local:8080", namespace = "orders")
-interface OrderInterface2 {
+interface OrderInterface {
 
     @Command(method = HttpMethod.POST)
     RpcResponse<List<Order>> select(String city, Order order);

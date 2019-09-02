@@ -44,8 +44,6 @@ public class MethodDescriptor {
 
     private int argumentsize;
 
-    private boolean isNamespace;
-
     static TypeFactory typeFactory = TypeFactory.defaultInstance();
 
     private HttpMethod httpMethod;
@@ -91,29 +89,14 @@ public class MethodDescriptor {
     }
 
     private void resolveRealPath() {
-        String namespace = resolveNamespace();
         String path = resolvePath();
-        if (StringUtils.isNotEmpty(namespace)) {
-            this.isNamespace = true;
-        }
-        if (StringUtils.isNotEmpty(namespace) && StringUtils.isNotEmpty(path)) {
-            throw new BindingException("");
-        }
-        if (StringUtils.isEmpty(namespace) && StringUtils.isEmpty(path)) {
+        if (StringUtils.isEmpty(path)) {
             throw new BindingException("");
         }
         String method = resolveMethodName();
         String model = resolveModel();
-        if (StringUtils.isNotEmpty(namespace)) {
-            // resolve using namespace field
-            this.path = "/${1}/api/" + namespace + "/" + model + "/" + method;
-            this.argumentsize = 1;
-        }
-        if (StringUtils.isNotEmpty(path)) {
-            // resolve using path field
-            this.path = path;
-            this.argumentsize = StringUtils.count(this.path, '$');
-        }
+        this.path = path;
+        this.argumentsize = StringUtils.count(this.path, '$');
     }
 
     private String resolveMethodName() {
@@ -123,9 +106,6 @@ public class MethodDescriptor {
     private String resolveModel() {
         Command command = this.method.getAnnotation(Command.class);
         Type[] types = ReflectUtils.resolveParamTypes(method, mapperInterface);
-        if (isNamespace && CollectionUtils.isEmptyArray(types)) {
-            throw new BindingException("method[" + method.getName() + "] pamameter size must not be zero");
-        }
         Class<?> modelClazz = null;
         for (Parameter parameter : parameters) {
             if (parameter.getType().isPrimitive() || String.class.equals(parameter.getType())) {
@@ -136,9 +116,6 @@ public class MethodDescriptor {
             } else {
                 throw new BindingException("");
             }
-        }
-        if (isNamespace && modelClazz == null) {
-            throw new BindingException("target missing");
         }
         if (modelClazz != null) {
             this.type = typeFactory.constructType(modelClazz);
@@ -159,15 +136,6 @@ public class MethodDescriptor {
             return null;
         }
         return path.toLowerCase();
-    }
-
-    private String resolveNamespace() {
-        Mapper mapper = mapperInterface.getAnnotation(Mapper.class);
-        String namespace = mapper.namespace();
-        if (StringUtils.isEmpty(namespace)) {
-            return null;
-        }
-        return namespace.toLowerCase();
     }
 
     public String getPath() {

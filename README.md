@@ -13,20 +13,18 @@ fresh-rpc k8s mode with flexible path definition.
 
 >2.定义接口
 
-    @Mapper(service = "java2test", namespace = "users")
-    public interface TestInterface {
+    @Mapper(service = "requestbin.net", path = "/r/${1}")
+    interface RBInterface1 {
     
         @Command
-        int create(String city, User user);
+        String get(String code);
     }
-
-或者
-
-    @Mapper(service = "java2test", path = "users/TestInterface")
-    public interface TestInterface {
+    
+    @Mapper(service = "requestbin.net", path = "/r/1ffqfn01")
+    interface RBInterface2 {
     
         @Command
-        int create(User user);
+        String get();
     }
 
 >3.创建启动类
@@ -35,12 +33,11 @@ fresh-rpc k8s mode with flexible path definition.
     public class Application implements CommandLineRunner {
         
         @Autowired
-        TestInterface test;
+        RBInterface2 int2;
     
         @Override
         public void run(String... args) throws Exception {
-            User user = new User();
             // ...
-            test.create(user);
+            int2.get();
         }
     }

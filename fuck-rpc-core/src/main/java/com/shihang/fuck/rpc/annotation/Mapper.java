@@ -10,7 +10,5 @@ import java.lang.annotation.*;
 public @interface Mapper {
     String service() default "";
 
-    String namespace() default "";
-
     String path() default "";
 }
