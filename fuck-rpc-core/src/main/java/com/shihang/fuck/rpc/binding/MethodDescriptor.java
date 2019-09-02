@@ -8,7 +8,6 @@ import com.shihang.fuck.rpc.annotation.HttpMethod;
 import com.shihang.fuck.rpc.annotation.Mapper;
 import com.shihang.fuck.rpc.handle.Handler;
 import com.shihang.fuck.rpc.handle.HandlerFactory;
-import com.shihang.fuck.rpc.utils.CollectionUtils;
 import com.shihang.fuck.rpc.utils.ReflectUtils;
 import com.shihang.fuck.rpc.utils.StringUtils;
 

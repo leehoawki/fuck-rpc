@@ -2,7 +2,6 @@ package com.shihang.fuck.rpc.serialize.encode;
 
 import com.shihang.fuck.rpc.binding.InvokeException;
 import com.shihang.fuck.rpc.serialize.Encode;
-import com.shihang.fuck.rpc.utils.StringUtils;
 
 import java.lang.reflect.Field;
 

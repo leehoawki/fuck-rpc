@@ -1,11 +1,5 @@
 package com.shihang.fuck.rpc.utils;
 
-/**
- * String 工具类
- *
- * @author chenfuqian
- * @since 1.0.0
- */
 public abstract class StringUtils {
 
     private StringUtils() {

@@ -7,9 +7,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import java.lang.reflect.Proxy;
-import java.util.Random;
-
 public class FuckFactoryBean implements FactoryBean<Object>, InitializingBean, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
