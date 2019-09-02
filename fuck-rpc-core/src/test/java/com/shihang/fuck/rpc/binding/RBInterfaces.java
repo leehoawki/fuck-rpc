@@ -14,5 +14,11 @@ interface RBInterface1 {
 interface RBInterface2 {
 
     @Command
-    String get();
+    String get(RB rb);
+}
+
+class RB {
+    String name;
+
+    int age;
 }

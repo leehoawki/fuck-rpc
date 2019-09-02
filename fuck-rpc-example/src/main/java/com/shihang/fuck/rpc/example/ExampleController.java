@@ -9,18 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExampleController {
 
     @Autowired
-    Example1 example1;
+    ExampleInterface exampleInterface;
 
-    @Autowired
-    Example2 example2;
-
-    @GetMapping("/example1")
+    @GetMapping("/example")
     public String fuck1() {
-        return example1.f1();
-    }
-
-    @GetMapping("/example2")
-    public String fuck2() {
-        return example2.f2();
+        return exampleInterface.example();
     }
 }
