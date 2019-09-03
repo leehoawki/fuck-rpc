@@ -56,17 +56,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>shihang-snapshots</id>
-            <url>http://sy-suz-srv73.suiyi.com.cn:8081/repository/shihang-snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>shihang-releases</id>
-            <url>http://sy-suz-srv73.suiyi.com.cn:8081/repository/shihang-releases/</url>
-        </repository>
-    </distributionManagement>
-
     <build>
         <plugins>
             <plugin>
