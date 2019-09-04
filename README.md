@@ -1,5 +1,5 @@
 ## fuck-rpc
-fresh-rpc k8s mode with flexible path definition.
+makes writing java http clients easier
 
 #### How to use
 >1.先引入依赖包

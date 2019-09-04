@@ -76,7 +76,7 @@ public class MapperMethod {
         }
 
         if (targets > 1) {
-            throw new InvokeException("too many targets to post, targets=" + targets + ", params=" + params);
+            throw new InvokeException("too many targets to convert, targets=" + targets + ", params=" + params);
         }
 
         if (argumentsize >= 0 && argumentsize != arguments) {
