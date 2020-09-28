@@ -21,6 +21,11 @@
             <artifactId>fuck-rpc-spring-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.shihang</groupId>
+            <artifactId>fuck-discovery-spring-boot-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

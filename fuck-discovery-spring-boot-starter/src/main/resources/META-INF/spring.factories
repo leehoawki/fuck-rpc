@@ -1,0 +1,4 @@
+# Auto Configuration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.shihang.fuck.rpc.spring.cloud.zookeeper.serviceregistry.ZookeeperServiceRegistryAutoConfiguration,\
+com.shihang.fuck.rpc.spring.cloud.zookeeper.serviceregistry.ZookeeperAutoConfiguration

@@ -11,14 +11,16 @@
 
     <modules>
         <module>fuck-rpc-core</module>
+        <module>fuck-rpc-mvc</module>
         <module>fuck-rpc-example</module>
         <module>fuck-rpc-spring-boot-starter</module>
+        <module>fuck-discovery-spring-boot-starter</module>
     </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.13.RELEASE</version>
+        <version>2.1.8.RELEASE</version>
     </parent>
 
     <properties>
@@ -38,6 +40,11 @@
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+                <version>2.1.4.RELEASE</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>fluent-hc</artifactId>
                 <version>4.5.9</version>
@@ -46,6 +53,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-x-discovery</artifactId>
+                <version>5.1.0</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>

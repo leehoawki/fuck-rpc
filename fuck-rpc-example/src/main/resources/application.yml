@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: fuck-rpc-example
+  cloud:
+    zookeeper:
+      connect-string: 10.141.62.94:2181
+      discovery:
+        prefer-ip-address: true
